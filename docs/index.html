@@ -29,6 +29,6 @@
     <details><summary>支持范围、验证状态与参数</summary><p>语言显示和容量修复核心已在 Apple TV 获得用户播放反馈。公开包新增的原生参数入口已通过本地模拟测试，仍需在具体 Shadowrocket／tvOS 版本上验证；首次安装后应确认双语、拖动和连接稳定性。</p><p>本版面向带 SegmentIndex 的 WebVTT，保持原段长度与精确 206。超限时精简元数据，再使用简洁布局；仍放不下则保留原字幕。未实现跨请求字幕缓存，重复加载同一段可能再次调用接口。并非所有字幕格式、影片和任意 Range 都受支持。</p><dl><dt>SourceLanguage</dt><dd>AUTO、ZH-HANS、ZH-HANT、EN 等；这里指字幕语言。</dd><dt>Position</dt><dd>zh-first（中文在上）或 ar-first。</dd><dt>Pipeline</dt><dd>direct：同一原文分别译成两种语言；pivot-zh：先译中文，再由中文译阿语。</dd><dt>DeepLPlan / DeepLKey</dt><dd>DeepL 模块专用；Free／Pro 和你自己的 API key。</dd></dl></details>
     <p id="copy-status" role="status" aria-live="polite"></p>
   </main>
-  <footer><p>独立项目 · 不隶属于 Netflix 或 DualSubs</p><p><a href="https://github.com/Ameder0201/Netflix-ZhAr-Subtitles#readme">使用说明</a><a href="https://github.com/Ameder0201/Netflix-ZhAr-Subtitles/releases">版本记录</a></p></footer>
+  <footer><p><a href="https://github.com/Ameder0201/Netflix-ZhAr-Subtitles#readme">使用说明</a><a href="https://github.com/Ameder0201/Netflix-ZhAr-Subtitles/releases">版本记录</a></p></footer>
 </body>
 </html>
