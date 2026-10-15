@@ -1,0 +1,10 @@
+{
+  "name": "opencc-js",
+  "version": "1.4.2",
+  "source": "https://registry.npmjs.org/opencc-js/-/opencc-js-1.4.2.tgz",
+  "upstream": "https://github.com/nk2028/opencc-js",
+  "asset": "dist/umd/t2cn.js",
+  "sha256": "5009384a6bdc904babee967a8bb9928e3c92288ec8a89ed036d53257e74cd8ab",
+  "license": "MIT AND Apache-2.0",
+  "runtimeNetworkDependencies": false
+}

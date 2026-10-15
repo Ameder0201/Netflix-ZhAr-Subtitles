@@ -1,0 +1,13 @@
+Netflix-ZhAr-Subtitles
+Copyright (c) 2026 Ameder0201. Project code: MIT.
+
+This project packages the locally developed v21-config-2 subtitle translation
+pipeline and range-preserving capacity fix. It was motivated by compatibility
+diagnostics involving DualSubs. It is an independent project, not an official
+DualSubs or Netflix release. No DualSubs hosted scripts are needed at runtime.
+
+Bundled third-party dependency:
+opencc-js 1.4.2, https://github.com/nk2028/opencc-js
+Copyright (c) 2020-2021 The nk2028 Project. MIT license: vendor/LICENSE.
+Its dictionary data is MIT AND Apache-2.0; see vendor/THIRD_PARTY_LICENSES.md,
+vendor/Apache-2.0.txt and vendor/PROVENANCE.json.

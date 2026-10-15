@@ -1,0 +1,10 @@
+#!name = Netflix 中阿双语 · Google
+#!desc = 完整简体中文＋阿拉伯语；原长分段与容量适配；Google；仅启用一份翻译模块。
+#!version = 1.0.0 (v21-config-2)
+#!arguments = SourceLanguage:AUTO,Position:zh-first,Pipeline:direct
+#!arguments-desc = SourceLanguage：AUTO／ZH-HANS／ZH-HANT／EN 等；Position：zh-first／ar-first；Pipeline：direct／pivot-zh。
+[Script]
+Netflix.ZhAr = type=http-request, pattern=^https?:\/\/[^/]+\.oca\.nflxvideo\.net\/\?o=\d+&v=\d+&e=\d+&t=.+, requires-body=0, timeout=35, script-path=https://raw.githubusercontent.com/Ameder0201/Netflix-ZhAr-Subtitles/v1.0.0/dist/Netflix.ZhAr.bundle.js, argument=Provider=Google&SourceLanguage={{{SourceLanguage}}}&Position={{{Position}}}&Pipeline={{{Pipeline}}}
+[MITM]
+hostname = %APPEND% *.oca.nflxvideo.net
+tcp-connection = true

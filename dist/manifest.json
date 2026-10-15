@@ -1,0 +1,10 @@
+{
+  "version": "1.0.0",
+  "coreVersion": "v21-config-2",
+  "repository": "Ameder0201/Netflix-ZhAr-Subtitles",
+  "sha256": {
+    "dist/Netflix.ZhAr.bundle.js": "585ae96dae52db8ab79e9695976ceff7c66c0b9faba09edf165326009b6d19ec",
+    "modules/Netflix.ZhAr.Google.srmodule": "ffa0bb0ce7ca55bda973df199354358e4657639b69f9ff69230a3325ac4d2472",
+    "modules/Netflix.ZhAr.DeepL.srmodule": "1b198f8f1072cbd3f22a8bade9e3f15cbd1dd3d853438f3b9dda3338a218d945"
+  }
+}
