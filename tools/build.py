@@ -56,6 +56,11 @@ tcp-connection = true
         artifacts[f'modules/Netflix.ZhAr.{provider}.srmodule']=module.encode()
     hashes={p:hashlib.sha256(b).hexdigest() for p,b in artifacts.items()}
     artifacts['dist/manifest.json']=(json.dumps({'version':VERSION,'coreVersion':CORE_VERSION,'repository':REPOSITORY,'sha256':hashes},indent=2)+'\n').encode()
+    # Pages serves these as plain files: no latest -> release -> asset redirects.
+    # Keep release assets/manifest immutable; mirrors are byte-identical modules.
+    for provider in ('Google','DeepL'):
+        name=f'Netflix.ZhAr.{provider}.srmodule'
+        artifacts[f'docs/modules/{name}']=artifacts[f'modules/{name}']
     return artifacts
 
 
@@ -65,7 +70,9 @@ def main():
         p=ROOT/name
         if args.check:
             if not p.is_file() or p.read_bytes()!=data:raise SystemExit('Outdated public build: '+name)
-        else:p.write_bytes(data)
+        else:
+            p.parent.mkdir(parents=True,exist_ok=True)
+            p.write_bytes(data)
     print('Public artifacts verified.' if args.check else 'Public artifacts built; no private configuration read.')
 
 

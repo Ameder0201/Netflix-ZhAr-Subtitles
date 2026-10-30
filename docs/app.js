@@ -1,7 +1,7 @@
 // No telemetry, remote configuration or credential form.
 (function(){
  'use strict';
- var base='https://github.com/Ameder0201/Netflix-ZhAr-Subtitles/releases/latest/download/';
+ var base='https://ameder0201.github.io/Netflix-ZhAr-Subtitles/modules/';
  ['Google','DeepL'].forEach(function(provider){
   var id=provider.toLowerCase(),url=base+'Netflix.ZhAr.'+provider+'.srmodule';
   document.getElementById('install-'+id).href='shadowrocket://install?module='+encodeURIComponent(url);

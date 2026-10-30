@@ -13,14 +13,22 @@
 
 | 翻译接口 | 固定模块 URL |
 | --- | --- |
-| Google，无需 API key | `https://github.com/Ameder0201/Netflix-ZhAr-Subtitles/releases/latest/download/Netflix.ZhAr.Google.srmodule` |
-| DeepL，填写自己的 API key | `https://github.com/Ameder0201/Netflix-ZhAr-Subtitles/releases/latest/download/Netflix.ZhAr.DeepL.srmodule` |
+| Google，无需 API key | `https://ameder0201.github.io/Netflix-ZhAr-Subtitles/modules/Netflix.ZhAr.Google.srmodule` |
+| DeepL，填写自己的 API key | `https://ameder0201.github.io/Netflix-ZhAr-Subtitles/modules/Netflix.ZhAr.DeepL.srmodule` |
+
+主入口使用 GitHub Pages 直接文件，避免 GitHub Releases 的 latest／下载资产重定向链。备用 [Google Release 下载](https://github.com/Ameder0201/Netflix-ZhAr-Subtitles/releases/latest/download/Netflix.ZhAr.Google.srmodule)／[DeepL Release 下载](https://github.com/Ameder0201/Netflix-ZhAr-Subtitles/releases/latest/download/Netflix.ZhAr.DeepL.srmodule) 仍保留。Pages 模块是同版本 Release 模块的逐字节镜像；运行脚本仍指向版本固定的 tag。
 
 1. 在目标设备的 Shadowrocket 准备 HTTPS 解密：开启解密、按客户端指引安装并信任其证书。模块追加 `*.oca.nflxvideo.net`，不替你安装／信任证书。
 2. Google 与 DeepL **只选一个**。同时停用旧 Netflix 翻译、诊断、实验及维护模块。本项目不依赖 Universal、BoxJS 或其他 DualSubs 托管脚本；若 Universal 用于其他平台，可保持原状态。
 3. DeepL 用户进入模块的「编辑参数」，填写自己的 `DeepLKey`，按账户选择 `DeepLPlan=Free` 或 `Pro`。公开文件只有占位值；未填写时保留原字幕，不发翻译请求、不切换到 Google。
 4. 播放影片并选择已有文字字幕。默认 AUTO 将同一原文分别译为简体中文和阿拉伯语；中文在上。无需每集在 Mac 手工准备。
-5. 以后退出 Netflix，在该模块上点「更新」。固定模块链接会跟随最新正式 release；每个 release 指向版本固定的自包含 JS。
+5. 以后退出 Netflix，在该模块上点「更新」。Pages 固定模块随发布流程同步；每个模块指向版本固定的自包含 JS。
+
+### iPad／iPhone 导入显示 Not Found
+
+请用 Safari 打开安装页。若一键按钮能唤起 Shadowrocket 但下载失败，先复制上表的直接地址，在 Shadowrocket「配置 → 模块 → 添加」中粘贴；手动与一键都使用同一份模块。仍失败时，用 Safari 直接打开该模块 URL，查看是否能看到以 `#!name` 开头的文本，再尝试备用 Release 下载，并提供失败地址与错误提示。
+
+2026-10-30 用户反馈 iPad 的 Google 和 DeepL 一键导入均显示 not found。这台 Mac 检查旧 Release URL、脚本与页面均为 200；旧模块下载存在两跳重定向。已改为 Pages 零重定向主入口，同时让页面不执行 JavaScript 时也使用正确的一键协议。尚未在该 iPad 复现或确认恢复，不能将重定向推测当成已证实根因。
 
 ### Apple TV
 

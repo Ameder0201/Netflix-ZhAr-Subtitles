@@ -48,6 +48,11 @@ vm.runInNewContext(fs.readFileSync(path.join(root,'docs/app.js'),'utf8'),{docume
 for(const provider of ['Google','DeepL']){
  const link=elements['install-'+provider.toLowerCase()].href;
  assert(link.startsWith('shadowrocket://install?module='));
- assert.equal(decodeURIComponent(link.split('module=')[1]),`https://github.com/Ameder0201/Netflix-ZhAr-Subtitles/releases/latest/download/Netflix.ZhAr.${provider}.srmodule`);
+ const url=`https://ameder0201.github.io/Netflix-ZhAr-Subtitles/modules/Netflix.ZhAr.${provider}.srmodule`;
+ assert.equal(decodeURIComponent(link.split('module=')[1]),url);
+ const html=fs.readFileSync(path.join(root,'docs/index.html'),'utf8');
+ assert(html.includes(`href="${link}"`),'No-JavaScript import fallback must match');
+ assert(html.includes(`value="${url}"`),'Copy/manual URL must match import URL');
+ assert.deepStrictEqual(fs.readFileSync(path.join(root,'docs/modules',`Netflix.ZhAr.${provider}.srmodule`)),fs.readFileSync(path.join(root,'modules',`Netflix.ZhAr.${provider}.srmodule`)));
 }
-console.log('PASS public adapter: validated native module args; missing/invalid key fails closed; public Google and DeepL bundles preserve exact206; no key in URL or device storage; installation schemes match release URLs.');
+console.log('PASS public adapter: validated native module args; missing/invalid key fails closed; public Google and DeepL bundles preserve exact206; no key in URL or device storage; JS/no-JS installation schemes match direct Pages files and copy URLs.');
