@@ -10,8 +10,11 @@ import xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parent.parent
 sys.path.insert(0,str(ROOT/'tools'))
 from build import generate,VERSION,REPOSITORY
+from build_deepl_compat import generate as generate_deepl_compat
 
 for name,data in generate().items():
+    assert (ROOT/name).read_bytes()==data,name
+for name,data in generate_deepl_compat().items():
     assert (ROOT/name).read_bytes()==data,name
 manifest=json.loads((ROOT/'dist/manifest.json').read_text())
 for name,expected in manifest['sha256'].items():assert hashlib.sha256((ROOT/name).read_bytes()).hexdigest()==expected

@@ -1,0 +1,8 @@
+#!name = Netflix 中阿双语 · DeepL 旧版兼容
+#!desc = 固定AUTO/direct/中文在上；直接编辑Script行末DeepLKey占位值及DeepLPlan；无需模块参数模板；更新后检查密钥是否保留。
+#!version = ipad-deepl-compat-1 (v21-config-2)
+[Script]
+Netflix.ZhAr.DeepL.Compat = type=http-request, pattern=^https?:\/\/[^/]+\.oca\.nflxvideo\.net\/\?o=\d+&v=\d+&e=\d+&t=.+, requires-body=0, timeout=35, script-path=https://ameder0201.github.io/Netflix-ZhAr-Subtitles/scripts/Netflix.ZhAr.DeepL.ipad-deepl-compat-1.js, argument=DeepLPlan=Free&DeepLKey=REPLACE_WITH_YOUR_KEY
+[MITM]
+hostname = %APPEND% *.oca.nflxvideo.net
+tcp-connection = true

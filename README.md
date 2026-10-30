@@ -34,13 +34,27 @@
 
 2026-10-30 用户已确认 iPad 下载成功；Shadowrocket 2.2.24 播放时的实际日志反复出现 `PUBLIC_ARGUMENT_INVALID`。可确认请求脚本已运行，但在公开参数适配层退出；具体是缺失参数、未替换模板还是参数类型不同，旧错误码未细分，尚未实机区分。
 
-先打开 **[Google 兼容版一键安装页](https://ameder0201.github.io/Netflix-ZhAr-Subtitles/compat/)**，点击按钮即可导入。首次导入后在客户端对同一份模块点击更新，固定地址不变。
+先打开 **[Google／DeepL 兼容版一键安装页](https://ameder0201.github.io/Netflix-ZhAr-Subtitles/compat/)**，点击对应按钮导入。首次导入后在客户端对同一份模块点击更新，固定地址不变。
 
 提供独立的 [Google 旧版兼容模块](https://ameder0201.github.io/Netflix-ZhAr-Subtitles/modules/Netflix.ZhAr.Google.Compat.srmodule)，版本 `ipad-compat-1`。该入口将 Google／AUTO／direct／中文在上直接编译进自包含脚本，不依赖 `$argument` 或 `#!arguments`，无需密钥。它仍调用 Google 翻译，且仍受本项目字幕格式与 Range 范围限制；不是对所有 iPad 请求方式的兼容保证。
 
-测试时停用其他 Netflix 翻译模块，只启用此兼容模块。它会在本机日志记录参数的类型和是否包含未展开模板，不记录参数值、密钥或字幕，也不向诊断服务器上传。构建与模拟通过，尚待用户实机播放确认。核心和现有 Google／DeepL 正式入口保持不变；不要把自己的 DeepL 密钥填到 Google 兼容模块。
+2026-10-30，用户确认这台 iPad／Shadowrocket 2.2.24 使用 Google 兼容模块已能翻译，说明字幕拦截与核心可运行；原公开入口的阻塞点是参数适配层。具体参数形态尚未实机捕获，不把“旧版一定不支持 argument”或“模板一定未展开”作为结论。此次反馈未分别覆盖拖动、全部影片及长期连接稳定性。
+
+测试时停用其他 Netflix 翻译模块，只启用此兼容模块。它会在本机日志记录参数的类型和是否包含未展开模板，不记录参数值、密钥或字幕，也不向诊断服务器上传。核心和现有 Google／DeepL 正式入口保持不变；不要把自己的 DeepL 密钥填到 Google 兼容模块。
 
 构建兼容入口：`python3 tools/build_google_compat.py`；检查：`node tests/google_compat.cjs`、`python3 tools/build_google_compat.py --check`。兼容 JS 路径带独立版本号，后续行为改变应增加版本号，不覆盖旧版本路径。
+
+### DeepL 旧版兼容入口
+
+[DeepL 兼容版安装页](https://ameder0201.github.io/Netflix-ZhAr-Subtitles/compat/#deepl)／[固定模块文件](https://ameder0201.github.io/Netflix-ZhAr-Subtitles/modules/Netflix.ZhAr.DeepL.Compat.srmodule)，版本 `ipad-deepl-compat-1`。固定 DeepL／AUTO／direct／中文在上，去掉 `#!arguments` 和所有三花括号模板，只从普通脚本 `argument` 读取密钥与账户类型。
+
+在模块**源码编辑页**找到 `[Script]` 长行末尾的 `argument=DeepLPlan=Free&DeepLKey=REPLACE_WITH_YOUR_KEY`，把占位值替换为自己的完整 API 密钥；Free 密钥保留 `:fx`。DeepL API Pro 用户把 `Free` 改成 `Pro`。不要在网页或公开仓库填写密钥。只启用这一份 Netflix 翻译模块。
+
+此适配器接受查询字符串、JSON 字符串和对象形式的参数，固定其他设置，避免原公开入口对 Provider／语言模板的依赖。它仍依赖客户端传递普通脚本 argument；若完全缺失则不会猜测密钥或回退 Google。缺失密钥、参数非法、模板未展开、账户类型非法分别记录 `DEEPL_COMPAT_KEY_MISSING`、`DEEPL_COMPAT_ARGUMENT_INVALID`、`DEEPL_COMPAT_TEMPLATE_UNRESOLVED`、`DEEPL_COMPAT_PLAN_INVALID`，不打印值。
+
+公开脚本不包含个人密钥，也不读写持久化设置。模块更新可能覆盖本地填写的密钥，更新后需检查并重新填写。正常运行仍由 iPad 直接访问 DeepL，Mac 无需在线。Free／Pro endpoint 与认证头遵循 [DeepL 官方认证文档](https://developers.deepl.com/docs/getting-started/auth)。本地覆盖双语精确 206、两种 API 账户、参数形态、鉴权／额度失败保留原字幕；**尚待 iPad 实机反馈**，Google 成功不等于 DeepL 已验证。
+
+构建与检查：`python3 tools/build_deepl_compat.py`、`node tests/deepl_compat.cjs`、`python3 tools/build_deepl_compat.py --check`。首次版本独立发布，不覆盖 Google 兼容 JS 或原 1.0.0 Release/tag。
 
 ### Apple TV
 

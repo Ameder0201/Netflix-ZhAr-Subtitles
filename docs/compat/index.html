@@ -11,10 +11,11 @@
 </head>
 <body>
   <main>
-    <h1>Google 旧版兼容模块</h1>
+    <h1>旧版 Shadowrocket 兼容模块</h1>
+    <h2>Google</h2>
     <p>简体中文＋阿拉伯语。无需 API 密钥，无需编辑模块参数。</p>
     <p class="version">当前版本：<code>ipad-compat-1</code> · 核心 v21-config-2</p>
-    <a class="install" id="install-compat" href="shadowrocket://install?module=https%3A%2F%2Fameder0201.github.io%2FNetflix-ZhAr-Subtitles%2Fmodules%2FNetflix.ZhAr.Google.Compat.srmodule">一键导入 Shadowrocket</a>
+    <a class="install" id="install-compat" href="shadowrocket://install?module=https%3A%2F%2Fameder0201.github.io%2FNetflix-ZhAr-Subtitles%2Fmodules%2FNetflix.ZhAr.Google.Compat.srmodule">一键导入 Google 兼容版</a>
     <a class="download" href="https://ameder0201.github.io/Netflix-ZhAr-Subtitles/modules/Netflix.ZhAr.Google.Compat.srmodule">查看／下载模块文件</a>
     <ol>
       <li>在 iPad 的 Safari 打开此页，点击上方按钮，允许打开 Shadowrocket 并完成导入。</li>
@@ -22,7 +23,20 @@
       <li>保持 HTTPS 解密及证书信任，重新打开 Netflix，选择简体中文字幕测试。</li>
     </ol>
     <p><strong>后续更新：</strong>退出 Netflix，在 Shadowrocket 的「配置 → 模块」中对这份兼容模块点「更新」。固定地址不变，无需反复复制链接。</p>
-    <p class="version">此入口绕过旧版客户端的参数替换。已通过本地模拟测试，iPad 实际翻译效果仍待验证；不包含 DeepL 密钥，也不会修改已有 DeepL 模块。</p>
+    <p class="version">2026-10-30，用户确认 iPad／Shadowrocket 2.2.24 使用 Google 兼容版已能翻译。此结果不代表所有影片、拖动或长期稳定性均已验证。</p>
+    <hr style="border:0;border-top:1px solid #e1e7e0;margin:28px 0">
+    <h2 id="deepl">DeepL API</h2>
+    <p>同样显示简体中文＋阿拉伯语，使用自己的 DeepL API 密钥。固定 AUTO／direct／中文在上，不使用模块参数模板。</p>
+    <p class="version">当前版本：<code>ipad-deepl-compat-1</code> · 核心 v21-config-2 · 本地模拟通过，iPad 实机待验证</p>
+    <a class="install" id="install-deepl-compat" href="shadowrocket://install?module=https%3A%2F%2Fameder0201.github.io%2FNetflix-ZhAr-Subtitles%2Fmodules%2FNetflix.ZhAr.DeepL.Compat.srmodule">一键导入 DeepL 兼容版</a>
+    <a class="download" href="https://ameder0201.github.io/Netflix-ZhAr-Subtitles/modules/Netflix.ZhAr.DeepL.Compat.srmodule">查看／下载 DeepL 兼容模块</a>
+    <ol>
+      <li>导入后打开这份模块的源码编辑页，找到 <code>[Script]</code> 下那一长行的末尾：<br><code>argument=DeepLPlan=Free&amp;DeepLKey=REPLACE_WITH_YOUR_KEY</code></li>
+      <li>只把 <code>REPLACE_WITH_YOUR_KEY</code> 换成完整 API 密钥，保留 <code>DeepLKey=</code>；Free 密钥的 <code>:fx</code> 后缀也需保留。使用 DeepL API Pro 时将 <code>DeepLPlan=Free</code> 改为 <code>DeepLPlan=Pro</code>。保存，不需要寻找「编辑参数」入口。</li>
+      <li>停用 Google 兼容版及其他 Netflix 翻译模块，只启用「Netflix 中阿双语 · DeepL 旧版兼容」，重新打开 Netflix 测试。</li>
+    </ol>
+    <p><strong>DeepL 更新：</strong>仍可对同一份模块点更新，但远程模块只有密钥占位值，更新可能覆盖本地修改；更新后检查并重新填写密钥。网页不接收或保存密钥，脚本不写设备缓存。</p>
+    <p class="version">Google 完全不依赖原生参数；DeepL 仍需客户端传递普通脚本 argument，兼容字符串、JSON 字符串及对象形式。若旧客户端完全不传 argument，此版会保留原字幕并记录缺少密钥，不能保证仅靠导入即恢复。</p>
     <details><summary>手动安装与固定更新地址</summary><p>若未能唤起客户端，将下面地址加入 Shadowrocket 的模块列表：</p><p><code>https://ameder0201.github.io/Netflix-ZhAr-Subtitles/modules/Netflix.ZhAr.Google.Compat.srmodule</code></p><p>按钮打开当前设备的 Shadowrocket，不会远程安装到 Apple TV。</p></details>
     <footer><a href="../">完整安装页</a><a href="https://github.com/Ameder0201/Netflix-ZhAr-Subtitles">GitHub 源码</a></footer>
   </main>

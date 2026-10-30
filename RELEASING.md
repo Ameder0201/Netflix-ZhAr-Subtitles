@@ -23,4 +23,6 @@ gh release create v1.0.0 \
 
 旧版兼容入口单独维护：`tools/build_google_compat.py` 生成固定 `docs/modules/Netflix.ZhAr.Google.Compat.srmodule`，模块引用带兼容版本号的 JS。更新时增加兼容版本号，保留旧 JS，再构建新模块、测试并同步 `docs/compat/index.html` 的版本显示；旧客户端继续从同一模块 URL 点更新。不要删除或覆盖旧版本 JS。
 
+DeepL 兼容入口由 `tools/build_deepl_compat.py` 构建，固定模块为 `docs/modules/Netflix.ZhAr.DeepL.Compat.srmodule`；脚本单独使用 `ipad-deepl-compat-N` 版本，不覆盖旧文件。运行 `node tests/deepl_compat.cjs` 和构建 `--check`，确认公开模块仅含密钥占位值。它用普通脚本 argument 接收本机密钥，不能恢复模板依赖，也不要把用户编辑后的含密钥模块纳入构建。页面必须说明模块更新可能覆盖本地密钥，需要检查并重新填写。
+
 GitHub Pages 使用 `main` 分支的 `/docs`。当前仓库不包含需要额外 OAuth workflow 权限的 Actions 文件；测试和 release 在本地执行，Pages 由 GitHub 的分支发布构建。更换账号或仓库名时同步修改 `tools/build.py`、README 与 docs 中的地址。
