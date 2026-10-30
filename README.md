@@ -34,6 +34,8 @@
 
 2026-10-30 用户已确认 iPad 下载成功；Shadowrocket 2.2.24 播放时的实际日志反复出现 `PUBLIC_ARGUMENT_INVALID`。可确认请求脚本已运行，但在公开参数适配层退出；具体是缺失参数、未替换模板还是参数类型不同，旧错误码未细分，尚未实机区分。
 
+先打开 **[Google 兼容版一键安装页](https://ameder0201.github.io/Netflix-ZhAr-Subtitles/compat/)**，点击按钮即可导入。首次导入后在客户端对同一份模块点击更新，固定地址不变。
+
 提供独立的 [Google 旧版兼容模块](https://ameder0201.github.io/Netflix-ZhAr-Subtitles/modules/Netflix.ZhAr.Google.Compat.srmodule)，版本 `ipad-compat-1`。该入口将 Google／AUTO／direct／中文在上直接编译进自包含脚本，不依赖 `$argument` 或 `#!arguments`，无需密钥。它仍调用 Google 翻译，且仍受本项目字幕格式与 Range 范围限制；不是对所有 iPad 请求方式的兼容保证。
 
 测试时停用其他 Netflix 翻译模块，只启用此兼容模块。它会在本机日志记录参数的类型和是否包含未展开模板，不记录参数值、密钥或字幕，也不向诊断服务器上传。构建与模拟通过，尚待用户实机播放确认。核心和现有 Google／DeepL 正式入口保持不变；不要把自己的 DeepL 密钥填到 Google 兼容模块。

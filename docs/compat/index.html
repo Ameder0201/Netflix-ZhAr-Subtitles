@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>旧版兼容模块 · 一键导入</title>
+  <style>
+    :root{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;color:#202b25;background:#f7f8f5;line-height:1.7}*{box-sizing:border-box}main{max-width:560px;margin:64px auto;padding:28px;background:#fff;border:1px solid #dce3dc;border-radius:14px}h1{font-size:25px;margin:0 0 10px}p{margin:12px 0;color:#526157}.version{font-size:13px;color:#66766a}.install{display:block;margin:24px 0 12px;padding:14px 18px;border-radius:8px;text-align:center;background:#306e53;color:#fff;text-decoration:none;font-weight:600}a:focus-visible{outline:3px solid #c48b28;outline-offset:4px}.download{display:block;text-align:center;font-size:14px;color:#306e53}ol{padding-left:22px}li{margin:10px 0}code{font-size:13px}details{border-top:1px solid #e1e7e0;padding-top:14px;margin-top:22px;font-size:13px}summary{cursor:pointer}details p{overflow-wrap:anywhere}footer{margin-top:24px;font-size:13px}footer a{color:#526157;margin-right:18px}@media(max-width:600px){main{margin:20px 14px;padding:24px}}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Google 旧版兼容模块</h1>
+    <p>简体中文＋阿拉伯语。无需 API 密钥，无需编辑模块参数。</p>
+    <p class="version">当前版本：<code>ipad-compat-1</code> · 核心 v21-config-2</p>
+    <a class="install" id="install-compat" href="shadowrocket://install?module=https%3A%2F%2Fameder0201.github.io%2FNetflix-ZhAr-Subtitles%2Fmodules%2FNetflix.ZhAr.Google.Compat.srmodule">一键导入 Shadowrocket</a>
+    <a class="download" href="https://ameder0201.github.io/Netflix-ZhAr-Subtitles/modules/Netflix.ZhAr.Google.Compat.srmodule">查看／下载模块文件</a>
+    <ol>
+      <li>在 iPad 的 Safari 打开此页，点击上方按钮，允许打开 Shadowrocket 并完成导入。</li>
+      <li>只启用「Netflix 中阿双语 · Google 旧版兼容」，停用原 Google、DeepL 和其他 Netflix 翻译模块。</li>
+      <li>保持 HTTPS 解密及证书信任，重新打开 Netflix，选择简体中文字幕测试。</li>
+    </ol>
+    <p><strong>后续更新：</strong>退出 Netflix，在 Shadowrocket 的「配置 → 模块」中对这份兼容模块点「更新」。固定地址不变，无需反复复制链接。</p>
+    <p class="version">此入口绕过旧版客户端的参数替换。已通过本地模拟测试，iPad 实际翻译效果仍待验证；不包含 DeepL 密钥，也不会修改已有 DeepL 模块。</p>
+    <details><summary>手动安装与固定更新地址</summary><p>若未能唤起客户端，将下面地址加入 Shadowrocket 的模块列表：</p><p><code>https://ameder0201.github.io/Netflix-ZhAr-Subtitles/modules/Netflix.ZhAr.Google.Compat.srmodule</code></p><p>按钮打开当前设备的 Shadowrocket，不会远程安装到 Apple TV。</p></details>
+    <footer><a href="../">完整安装页</a><a href="https://github.com/Ameder0201/Netflix-ZhAr-Subtitles">GitHub 源码</a></footer>
+  </main>
+</body>
+</html>

@@ -3,6 +3,14 @@ const root=path.resolve(__dirname,'..'),code=fs.readFileSync(path.join(root,'doc
 const moduleText=fs.readFileSync(path.join(root,'docs/modules/Netflix.ZhAr.Google.Compat.srmodule'),'utf8');
 assert(!moduleText.includes('argument='));assert(!moduleText.includes('#!arguments'));
 assert(!code.includes('DSPublicConfig21'));assert(!code.includes('$persistentStore'));
+const installPage=fs.readFileSync(path.join(root,'docs/compat/index.html'),'utf8');
+const installLink=installPage.match(/id="install-compat" href="([^"]+)"/)[1];
+assert(installLink.startsWith('shadowrocket://install?module='));
+const fixedUrl='https://ameder0201.github.io/Netflix-ZhAr-Subtitles/modules/Netflix.ZhAr.Google.Compat.srmodule';
+assert.equal(decodeURIComponent(installLink.split('module=')[1]),fixedUrl);
+assert(installPage.includes('href="'+fixedUrl+'"'));
+assert(installPage.includes('ipad-compat-1'));assert(!installPage.includes('<script'));
+assert(fs.readFileSync(path.join(root,'docs/index.html'),'utf8').includes('href="compat/"'));
 for(const [argument,template] of [[undefined,'no'],['Provider=Google&SourceLanguage={{{SourceLanguage}}}','yes'],[{DeepLKey:'TEST_PRIVATE_KEY'},'no']]){
  const logs=[],wire=[];let cdn=0,translate=0;
  const c={console:{log:s=>logs.push(s)},setTimeout:()=>1,clearTimeout(){}};

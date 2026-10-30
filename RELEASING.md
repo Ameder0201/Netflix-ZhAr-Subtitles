@@ -21,4 +21,6 @@ gh release create v1.0.0 \
 
 发新版本时，先保证 tag 脚本可下载再切换 Pages 镜像，避免页面模块提前引用不存在的 tag。可以先发布 Release，再提交／推送 docs/modules 镜像；不要以覆盖旧 release 资产的方式修复安装页。
 
+旧版兼容入口单独维护：`tools/build_google_compat.py` 生成固定 `docs/modules/Netflix.ZhAr.Google.Compat.srmodule`，模块引用带兼容版本号的 JS。更新时增加兼容版本号，保留旧 JS，再构建新模块、测试并同步 `docs/compat/index.html` 的版本显示；旧客户端继续从同一模块 URL 点更新。不要删除或覆盖旧版本 JS。
+
 GitHub Pages 使用 `main` 分支的 `/docs`。当前仓库不包含需要额外 OAuth workflow 权限的 Actions 文件；测试和 release 在本地执行，Pages 由 GitHub 的分支发布构建。更换账号或仓库名时同步修改 `tools/build.py`、README 与 docs 中的地址。
