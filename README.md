@@ -30,6 +30,16 @@
 
 2026-10-30 用户反馈 iPad 的 Google 和 DeepL 一键导入均显示 not found。这台 Mac 检查旧 Release URL、脚本与页面均为 200；旧模块下载存在两跳重定向。已改为 Pages 零重定向主入口，同时让页面不执行 JavaScript 时也使用正确的一键协议。尚未在该 iPad 复现或确认恢复，不能将重定向推测当成已证实根因。
 
+### 旧版客户端导入后不翻译
+
+2026-10-30 用户已确认 iPad 下载成功；Shadowrocket 2.2.24 播放时的实际日志反复出现 `PUBLIC_ARGUMENT_INVALID`。可确认请求脚本已运行，但在公开参数适配层退出；具体是缺失参数、未替换模板还是参数类型不同，旧错误码未细分，尚未实机区分。
+
+提供独立的 [Google 旧版兼容模块](https://ameder0201.github.io/Netflix-ZhAr-Subtitles/modules/Netflix.ZhAr.Google.Compat.srmodule)，版本 `ipad-compat-1`。该入口将 Google／AUTO／direct／中文在上直接编译进自包含脚本，不依赖 `$argument` 或 `#!arguments`，无需密钥。它仍调用 Google 翻译，且仍受本项目字幕格式与 Range 范围限制；不是对所有 iPad 请求方式的兼容保证。
+
+测试时停用其他 Netflix 翻译模块，只启用此兼容模块。它会在本机日志记录参数的类型和是否包含未展开模板，不记录参数值、密钥或字幕，也不向诊断服务器上传。构建与模拟通过，尚待用户实机播放确认。核心和现有 Google／DeepL 正式入口保持不变；不要把自己的 DeepL 密钥填到 Google 兼容模块。
+
+构建兼容入口：`python3 tools/build_google_compat.py`；检查：`node tests/google_compat.cjs`、`python3 tools/build_google_compat.py --check`。兼容 JS 路径带独立版本号，后续行为改变应增加版本号，不覆盖旧版本路径。
+
 ### Apple TV
 
 tvOS 通常没有供此用途使用的浏览器。一键按钮打开的是**当前手机或 Mac** 的 Shadowrocket，并不会远程把模块装到 Apple TV。复制固定模块 URL，在 Apple TV 的 Shadowrocket「配置 → 模块 → 添加」中导入，之后仍在 Apple TV 上点更新。

@@ -1,0 +1,8 @@
+#!name = Netflix 中阿双语 · Google 旧版兼容
+#!desc = 旧版Shadowrocket固定Google/AUTO/direct/中文在上；无需模块参数或密钥；只启用这一份Netflix翻译模块。
+#!version = ipad-compat-1 (v21-config-2)
+[Script]
+Netflix.ZhAr.Google.Compat = type=http-request, pattern=^https?:\/\/[^/]+\.oca\.nflxvideo\.net\/\?o=\d+&v=\d+&e=\d+&t=.+, requires-body=0, timeout=35, script-path=https://ameder0201.github.io/Netflix-ZhAr-Subtitles/scripts/Netflix.ZhAr.Google.ipad-compat-1.js
+[MITM]
+hostname = %APPEND% *.oca.nflxvideo.net
+tcp-connection = true
